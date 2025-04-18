@@ -1,14 +1,14 @@
 import "./NavBar.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const NAV_LIST = [
-  "차트",
-  "Whook",
-  "이벤트",
-  "뉴스",
-  "스토어",
-  "충전소",
+const NAV_ITEMS = [
+  { label: "차트", path: "chart" },
+  { label: "Whook", path: "whook" },
+  { label: "이벤트", path: "event" },
+  { label: "뉴스", path: "news" },
+  { label: "스토어", path: "store" },
+  { label: "충전소", path: "charge" },
 ] as const;
 
 const NavBar = () => {
@@ -16,11 +16,16 @@ const NavBar = () => {
     <nav className="chart-nav">
       <ul className="nav-list">
         <Swiper slidesPerView="auto">
-          {NAV_LIST.map((nav) => {
+          {NAV_ITEMS.map(({ label, path }) => {
             return (
-              <SwiperSlide key={nav}>
+              <SwiperSlide key={path}>
                 <li className="nav-item">
-                  <Link to="/chart">{nav}</Link>
+                  <NavLink
+                    to={path}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    {label}
+                  </NavLink>
                 </li>
               </SwiperSlide>
             );
