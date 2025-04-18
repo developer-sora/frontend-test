@@ -1,12 +1,12 @@
-import Banner from "../../components/common/Banner/Banner";
 import Layout from "../../components/common/Layout/Layout";
 import NavBar from "../../components/common/NavBar/NavBar";
+import BannerSwiper from "../../components/common/Banner/BannerSwiper";
 
 const HomePage = () => {
   return (
     <Layout>
       <NavBar />
-      <Banner />
+      <BannerSwiper />
     </Layout>
   );
 };
