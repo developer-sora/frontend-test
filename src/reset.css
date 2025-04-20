@@ -91,6 +91,12 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.4rem;
+}
 a {
   text-decoration: none;
   color: inherit;
