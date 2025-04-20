@@ -1,16 +1,23 @@
 import "./Banner.scss";
-import { Link } from "react-router-dom";
 
-const Banner = () => {
+interface BannerProps {
+  imgSrc: string;
+  title: string;
+  date: string;
+  url: string;
+}
+
+const Banner = ({ imgSrc, title, date, url }: BannerProps) => {
   return (
-    <Link to="">
+    <a href={url} target="_blank">
       <div className="banner-container">
-        <img src="https://www.mnetplus.world/static/images/uploaded/25ad89fb-c4f7-42a2-bb12-24477a9d0937?webp=1&w=1240" />
+        <img className="banner-image" src={imgSrc} alt="배너 이미지" />
         <div className="desc-wrapper">
-          <div>이미지 소개</div>
+          <div className="desc-title">{title}</div>
+          <div className="desc-date">{date}</div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 

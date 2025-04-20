@@ -1,11 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import "./Banner.scss";
 import Banner from "./Banner";
+import { BannerItem } from "@shared-types/banner";
 
-const BANNERS = [1, 2, 3];
+interface BannerSwiperProps {
+  banners: BannerItem[];
+}
 
-const BannerSwiper = () => {
+const BannerSwiper = ({ banners }: BannerSwiperProps) => {
   return (
     <div className="banner-swiper">
       <Swiper
@@ -17,11 +19,12 @@ const BannerSwiper = () => {
           clickable: true,
         }}
         modules={[Pagination]}
+        nested={true}
       >
-        {BANNERS.map((banner) => {
+        {banners.map((banner) => {
           return (
-            <SwiperSlide key={banner}>
-              <Banner />
+            <SwiperSlide key={banner.imgSrc}>
+              <Banner {...banner} />
             </SwiperSlide>
           );
         })}

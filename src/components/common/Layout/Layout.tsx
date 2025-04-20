@@ -1,13 +1,14 @@
-import Swiper from "swiper";
-import NavBar from "../NavBar/NavBar";
-import styles from "./Layout.module.scss";
+import NavBar from "@components/common/NavBar/NavBar";
 import { Outlet } from "react-router-dom";
+import Footer from "@components/common/Footer/Footer";
+import "./Layout.scss";
 
 const Layout = () => {
   return (
-    <div className={styles.layout}>
+    <div className="layout">
       <NavBar />
       <Outlet />
+      <Footer />
     </div>
   );
 };

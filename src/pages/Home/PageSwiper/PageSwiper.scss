@@ -1,0 +1,14 @@
+.swiper-container {
+  min-height: calc(100vh - 42px - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .other-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: calc(100vh - 42px - 100px);
+  }
+}

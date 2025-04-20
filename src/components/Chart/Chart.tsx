@@ -1,15 +1,23 @@
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { ChartItemType } from "../../types/chart";
+import { ChartItemType } from "@shared-types/chart";
+import Loading from "@components/common/Loading/Loading";
 import ChartItem from "./ChartItem";
+import "./Chart.scss";
 
-type ChartProps = {
+interface ChartProps {
   chart: ChartItemType[];
   fetchNextPage: () => void;
   hasNextPage: boolean;
-};
+  isFetchingNextPage: boolean;
+}
 
-const Chart = ({ chart, fetchNextPage, hasNextPage }: ChartProps) => {
+const Chart = ({
+  chart,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
+}: ChartProps) => {
   const { ref, inView } = useInView({
     threshold: 0.3,
     rootMargin: "100px",
@@ -22,7 +30,8 @@ const Chart = ({ chart, fetchNextPage, hasNextPage }: ChartProps) => {
   }, [fetchNextPage, inView, hasNextPage]);
 
   return (
-    <div>
+    <div className="chart-list">
+      <div>차트</div>
       {chart.map((item, index) => {
         const isLast = index === chart.length - 1;
         return (
@@ -31,6 +40,7 @@ const Chart = ({ chart, fetchNextPage, hasNextPage }: ChartProps) => {
           </div>
         );
       })}
+      {isFetchingNextPage && <Loading />}
     </div>
   );
 };

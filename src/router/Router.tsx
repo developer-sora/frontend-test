@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Layout from "../components/common/Layout/Layout";
-import ChartPage from "../pages/Home/Chart/ChartPage";
-import OtherPage from "../pages/Home/Others/OtherPage";
+import Layout from "@components/common/Layout/Layout";
+import PageSwiper from "@pages/Home/PageSwiper/PageSwiper";
 
 export const router = createBrowserRouter([
   {
@@ -14,27 +13,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "chart",
-        element: <ChartPage />,
+        element: <PageSwiper />,
       },
       {
-        path: "Whook",
-        element: <OtherPage />,
+        path: "whook",
+        element: <PageSwiper />,
       },
       {
         path: "event",
-        element: <OtherPage />,
+        element: <PageSwiper />,
       },
       {
         path: "news",
-        element: <OtherPage />,
+        element: <PageSwiper />,
       },
       {
         path: "store",
-        element: <OtherPage />,
+        element: <PageSwiper />,
       },
       {
         path: "charge",
-        element: <OtherPage />,
+        element: <PageSwiper />,
       },
     ],
   },

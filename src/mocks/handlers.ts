@@ -1,6 +1,8 @@
 import { DefaultBodyType, http, HttpResponse, PathParams } from "msw";
-import chartMockData from "./mockData.json";
-import { ChartResponse } from "../types/chart";
+import chartMockData from "./chartMockData.json";
+import { ChartResponse } from "@shared-types/chart";
+import bannerMockData from "./bannersMockData.json";
+import { BannerResponse } from "@shared-types/banner";
 
 interface ChartPrams extends PathParams {
   limit: string;
@@ -33,4 +35,13 @@ export const handlers = [
       return HttpResponse.json(responseData);
     }
   ),
+  http.get<PathParams, DefaultBodyType, BannerResponse>("/api/banners", () => {
+    const responseData: BannerResponse = {
+      code: 100,
+      message: null,
+      resultData: bannerMockData,
+    };
+
+    return HttpResponse.json(responseData);
+  }),
 ];

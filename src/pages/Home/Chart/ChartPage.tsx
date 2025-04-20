@@ -1,29 +1,29 @@
-import Layout from "../../../components/common/Layout/Layout";
-import BannerSwiper from "../../../components/common/Banner/BannerSwiper";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { ChartResponse } from "../../../types/chart";
-import Chart from "../../../components/Chart/Chart";
+import BannerSwiper from "@components/common/Banner/BannerSwiper";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import Chart from "@components/Chart/Chart";
+import { fetchBanners, fetchChart } from "@api/chart";
+import Loading from "@components/common/Loading/Loading";
+import "./ChartPage.scss";
 
-const limit = 10; // limit 값 예시
-const page = 1; // 현재 페이지
+const limit = 10;
+const page = 0;
 
 const ChartPage = () => {
+  const { data: banners, isLoading: isBannersLoading } = useQuery({
+    queryKey: ["banners"],
+    queryFn: fetchBanners,
+    staleTime: 5 * 60 * 1000,
+  });
+
   const {
-    status,
     data: chart,
-    error,
-    isFetching,
+    isLoading: isChartLoading,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["chart", limit, page],
-    queryFn: async ({ pageParam = 0 }): Promise<ChartResponse> => {
-      const response = await fetch(
-        `/api/chart?limit=${limit}&page=${pageParam}`
-      );
-      return await response.json();
-    },
+    queryFn: ({ pageParam = 0 }) => fetchChart({ pageParam, limit }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
       const fetchedTotal = allPages.flatMap((p) => p.resultData.list).length;
@@ -34,15 +34,21 @@ const ChartPage = () => {
   if (!chart?.pages[0].resultData.list) {
     return null;
   }
+
+  if (isBannersLoading || isChartLoading) {
+    return <Loading />;
+  }
+
   return (
-    <>
-      <BannerSwiper />
+    <div className="chart-page">
+      {banners?.resultData && <BannerSwiper banners={banners.resultData} />}
       <Chart
         chart={chart.pages.flatMap((page) => page.resultData.list)}
         fetchNextPage={fetchNextPage}
         hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
       />
-    </>
+    </div>
   );
 };
 

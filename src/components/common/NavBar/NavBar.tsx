@@ -1,6 +1,6 @@
-import "./NavBar.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { NavLink } from "react-router-dom";
+import "./NavBar.scss";
 
 const NAV_ITEMS = [
   { label: "차트", path: "chart" },
