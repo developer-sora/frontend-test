@@ -29,6 +29,7 @@ npm run dev
  ┃ ┃ ┣ 📂Store
  ┃ ┃ ┣ 📂Whook
  ┣ 📂router
+ ┣ 📂queries
  ┣ 📂styles
  ┃ ┗ 📂_base
  ┣ 📂types
