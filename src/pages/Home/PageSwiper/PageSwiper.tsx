@@ -4,7 +4,6 @@ import React, { Suspense, lazy, useEffect, useRef } from "react";
 import Loading from "@components/common/Loading/Loading";
 import "./PageSwiper.scss";
 
-// 페이지 컴포넌트들을 lazy로 import
 const ChartPage = lazy(() => import("@pages/Home/Chart/ChartPage"));
 const WhookPage = lazy(() => import("@pages/Home/Whook/WhookPage"));
 const EventPage = lazy(() => import("@pages/Home/Event/EventPage"));
